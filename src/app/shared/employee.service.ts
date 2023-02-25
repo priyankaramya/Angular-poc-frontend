@@ -14,24 +14,24 @@ const headers = new HttpHeaders()
 export class EmployeeService {
   selectedEmployee!: Employee;
   employees: Employee[] = [];
-  readonly baseURL = ('https://angular-poc-backend.vercel.app/employees', { 'headers': headers });
+  readonly baseURL = ('https://angular-poc-backend.vercel.app/employees');
 
   constructor(private http: HttpClient) { }
 
   postEmployee(emp: Employee) {
-    return this.http.post(this.baseURL, emp);
+    return this.http.post(this.baseURL, emp, { 'headers': headers });
   }
 
   getEmployeeList() {
-    return this.http.get(this.baseURL);
+    return this.http.get(this.baseURL, { 'headers': headers });
   }
 
   putEmployee(emp: Employee) {
-    return this.http.put(this.baseURL + `/${emp._id}`, emp);
+    return this.http.put(this.baseURL + `/${emp._id}`, emp, { 'headers': headers });
   }
 
   deleteEmployee(_id: string) {
-    return this.http.delete(this.baseURL + `/${_id}`);
+    return this.http.delete(this.baseURL + `/${_id}`, { 'headers': headers });
   }
 
 }
